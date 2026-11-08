@@ -25,7 +25,7 @@ A lightweight, high-performance **New Tab** browser extension built with Manifes
 
 1. Download or clone this repository to your computer (or click **Code > Download ZIP** at the top of the GitHub repository page). or use this command:
    ```bash
-   git clone [https://github.com/ahmas0064-cloud/real-home-extension.git](https://github.com/ahmas0064-cloud/real-home-extension.git)
+   git clone [git@github.com:ahmas0064-cloud/Real-Home..git](git@github.com:ahmas0064-cloud/Real-Home..gitt)
 
 ## Warning!
 It is still in its alpha version, so there may be bugs. The full release is expected on December 1, 2026.
