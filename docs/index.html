@@ -99,7 +99,7 @@
 
     header.hero {
       text-align: center;
-      padding: 80px 20px 60px;
+      padding: 60px 20px 40px;
       max-width: 900px;
       margin: 0 auto;
     }
@@ -116,7 +116,7 @@
     }
 
     .hero h1 {
-      font-size: 3.5rem;
+      font-size: 3.2rem;
       font-weight: 800;
       letter-spacing: -1px;
       line-height: 1.15;
@@ -124,10 +124,10 @@
     }
 
     .hero p {
-      font-size: 1.2rem;
+      font-size: 1.15rem;
       color: var(--text-muted);
       max-width: 640px;
-      margin: 0 auto 36px;
+      margin: 0 auto 32px;
     }
 
     .cta-group {
@@ -169,28 +169,50 @@
       transform: translateY(-2px);
     }
 
-    .mockup-container {
-      max-width: 1000px;
+    /* Live Preview Section */
+    .preview-section {
+      max-width: 1050px;
       margin: 40px auto 100px;
       padding: 0 20px;
     }
 
-    .mockup-window {
-      background: rgba(24, 24, 27, 0.8);
+    .preview-header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .preview-header h2 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .preview-header p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .browser-frame {
+      background: rgba(24, 24, 27, 0.9);
       border: 1px solid var(--card-border);
       border-radius: 16px;
       backdrop-filter: blur(20px);
-      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.6);
       overflow: hidden;
     }
 
-    .mockup-header {
+    .browser-toolbar {
       background: rgba(255, 255, 255, 0.03);
       padding: 12px 18px;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 16px;
       border-bottom: 1px solid var(--card-border);
+    }
+
+    .window-dots {
+      display: flex;
+      gap: 8px;
     }
 
     .dot {
@@ -200,61 +222,29 @@
       background: rgba(255, 255, 255, 0.15);
     }
 
-    .mockup-body {
-      padding: 60px 40px;
+    .address-bar {
+      flex: 1;
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 6px 16px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
       display: flex;
-      flex-direction: column;
       align-items: center;
+      gap: 8px;
     }
 
-    .mockup-title {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 2rem;
-      font-weight: 700;
-      margin-bottom: 30px;
-    }
-
-    .mockup-title img {
-      width: 36px;
-      height: 36px;
-    }
-
-    .mockup-search {
+    .iframe-container {
+      position: relative;
       width: 100%;
-      max-width: 520px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--card-border);
-      border-radius: 30px;
-      padding: 14px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 36px;
-      color: var(--text-muted);
+      height: 540px;
     }
 
-    .mockup-shortcuts {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    .shortcut-tile {
-      width: 64px;
-      height: 64px;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid var(--card-border);
-      border-radius: 14px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      gap: 4px;
+    .iframe-container iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
     }
 
     .features-section {
@@ -400,6 +390,9 @@
       nav {
         padding: 20px 5%;
       }
+      .iframe-container {
+        height: 380px;
+      }
       footer {
         flex-direction: column;
         text-align: center;
@@ -417,6 +410,7 @@
       <span>Real Home.</span>
     </a>
     <div class="nav-links">
+      <a href="#preview">Interactive Demo</a>
       <a href="#features">Features</a>
       <a href="#install">Install</a>
       <a href="https://github.com/ahmas0064-cloud/real-home-extension" target="_blank" class="btn-github">GitHub</a>
@@ -426,36 +420,32 @@
   <header class="hero">
     <div class="badge">Alpha Version • Full Release Dec 1, 2026</div>
     <h1>The Minimalist Launchpad for Your Browser</h1>
-    <p>A fast, privacy-first Manifest V3 new tab page featuring glassmorphism design, local wallpaper storage, and smart shortcuts.</p>
+    <p>A fast, privacy-first Manifest V3 new tab page featuring neutral glassmorphism design, local wallpaper storage, and smart shortcuts.</p>
     <div class="cta-group">
       <a href="#install" class="btn-primary">Get Started</a>
       <a href="https://github.com/ahmas0064-cloud/real-home-extension" target="_blank" class="btn-secondary">View Source Code</a>
     </div>
   </header>
 
-  <section class="mockup-container">
-    <div class="mockup-window">
-      <div class="mockup-header">
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
+  <!-- Live Embedded Interactive Preview -->
+  <section id="preview" class="preview-section">
+    <div class="preview-header">
+      <h2>Live Interactive Preview</h2>
+      <p>Try out the full extension UI directly inside this window.</p>
+    </div>
+    <div class="browser-frame">
+      <div class="browser-toolbar">
+        <div class="window-dots">
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </div>
+        <div class="address-bar">
+          🔒 real-home://newtab
+        </div>
       </div>
-      <div class="mockup-body">
-        <div class="mockup-title">
-          <img src="logo.png" alt="Logo">
-          Real Home.
-        </div>
-        <div class="mockup-search">
-          <span>Search Google or type a URL...</span>
-          <span>🎙️ 📷</span>
-        </div>
-        <div class="mockup-shortcuts">
-          <div class="shortcut-tile">▶️ <span>YouTube</span></div>
-          <div class="shortcut-tile">💬 <span>Reddit</span></div>
-          <div class="shortcut-tile">🐙 <span>GitHub</span></div>
-          <div class="shortcut-tile">✉️ <span>Gmail</span></div>
-          <div class="shortcut-tile">📖 <span>Wikipedia</span></div>
-        </div>
+      <div class="iframe-container">
+        <iframe src="../index.html" title="Real Home Extension Preview"></iframe>
       </div>
     </div>
   </section>
