@@ -1,6 +1,6 @@
 # Real Home.
 
-A lightweight, high-performance **New Tab** browser extension built with Manifest V3. Designed for minimalism, speed, and privacy.
+A lightweight, high-performance **New Tab** Chromiun browser extension built with Manifest V3. Designed for minimalism, speed, and privacy.
 
 ## Features
 
