@@ -170,6 +170,7 @@
       transform: translateY(-2px);
     }
 
+    /* Embedded Extension Preview Window */
     .preview-section {
       max-width: 1050px;
       margin: 40px auto 100px;
@@ -236,16 +237,110 @@
       gap: 8px;
     }
 
-    .iframe-container {
-      width: 100%;
-      height: 520px;
+    /* Extension UI Render Stage */
+    .extension-stage {
+      min-height: 500px;
+      padding: 60px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       position: relative;
     }
 
-    .iframe-container iframe {
+    .ext-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 30px;
+      color: #ffffff;
+    }
+
+    .ext-brand img {
+      width: 42px;
+      height: 42px;
+    }
+
+    .ext-search {
       width: 100%;
-      height: 100%;
+      max-width: 580px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(12px);
+      border-radius: 30px;
+      padding: 8px 16px 8px 22px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 40px;
+    }
+
+    .ext-input {
+      flex: 1;
+      background: transparent;
       border: none;
+      outline: none;
+      color: #ffffff;
+      font-size: 1rem;
+    }
+
+    .ext-input::placeholder {
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    .ext-btn {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      font-size: 1.1rem;
+      padding: 6px;
+      border-radius: 50%;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .ext-shortcuts {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .ext-tile {
+      width: 72px;
+      height: 72px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(10px);
+      border-radius: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      color: #ffffff;
+      font-size: 0.75rem;
+      gap: 6px;
+      transition: transform 0.2s;
+    }
+
+    .ext-tile:hover {
+      transform: translateY(-3px);
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .ext-gear {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #ffffff;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      cursor: pointer;
     }
 
     .features-section {
@@ -391,9 +486,6 @@
       nav {
         padding: 20px 5%;
       }
-      .iframe-container {
-        height: 380px;
-      }
       footer {
         flex-direction: column;
         text-align: center;
@@ -428,6 +520,7 @@
     </div>
   </header>
 
+  <!-- Native Code Preview Frame -->
   <section id="preview" class="preview-section">
     <div class="preview-header">
       <h2>Live Interactive Preview</h2>
@@ -445,8 +538,27 @@
         </div>
       </div>
       
-      <div class="iframe-container">
-        <iframe src="../index.html" title="Real Home Extension Preview"></iframe>
+      <div class="extension-stage">
+        <div class="ext-brand">
+          <img src="logo.png" alt="Logo">
+          Real Home.
+        </div>
+
+        <form class="ext-search" action="https://www.google.com/search" method="GET" target="_blank">
+          <input type="text" name="q" class="ext-input" placeholder="Search Google or type a URL..." required>
+          <button type="button" class="ext-btn" title="Voice Search">🎙️</button>
+          <button type="button" class="ext-btn" title="Image Search">📷</button>
+        </form>
+
+        <div class="ext-shortcuts">
+          <a href="https://youtube.com" target="_blank" class="ext-tile">▶️ <span>YouTube</span></a>
+          <a href="https://reddit.com" target="_blank" class="ext-tile">💬 <span>Reddit</span></a>
+          <a href="https://github.com" target="_blank" class="ext-tile">🐙 <span>GitHub</span></a>
+          <a href="https://gmail.com" target="_blank" class="ext-tile">✉️ <span>Gmail</span></a>
+          <a href="https://wikipedia.org" target="_blank" class="ext-tile">📖 <span>Wikipedia</span></a>
+        </div>
+
+        <button class="ext-gear">⚙️ Settings</button>
       </div>
     </div>
   </section>
