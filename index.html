@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Real Home.</title>
+  <link rel="icon" type="image/png" href="logo.png">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #121212;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      color: #e0e0e0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 40px 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.45);
+      z-index: 1;
+    }
+
+    .top-section {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 650px;
+    }
+
+    .title-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 35px;
+    }
+
+    .title-logo {
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));
+    }
+
+    .title {
+      font-size: 2.8rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      color: #ffffff;
+      text-shadow: 0 4px 12px rgba(0,0,0,0.6);
+    }
+
+    .search-box {
+      width: 100%;
+      margin-bottom: 35px;
+    }
+
+    .search-input-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+      width: 100%;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 15px 100px 15px 24px;
+      font-size: 1.05rem;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 30px;
+      background-color: rgba(30, 30, 30, 0.75);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      color: #fff;
+      outline: none;
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+      transition: all 0.25s ease;
+    }
+
+    .search-box input:focus {
+      border-color: #bb86fc;
+      background-color: rgba(40, 40, 40, 0.9);
+      box-shadow: 0 8px 32px 0 rgba(187, 134, 252, 0.2);
+    }
+
+    .search-actions {
+      position: absolute;
+      right: 15px;
+      display: flex;
+      gap: 8px;
+    }
+
+    .search-icon-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1.1rem;
+      color: #ccc;
+      transition: transform 0.2s, color 0.2s;
+    }
+
+    .search-icon-btn:hover {
+      color: #bb86fc;
+      transform: scale(1.1);
+    }
+
+    .favorites-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+      gap: 20px;
+      width: 100%;
+      justify-items: center;
+    }
+
+    .shortcut-wrapper {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .shortcut {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      color: #e0e0e0;
+      width: 80px;
+      transition: transform 0.2s ease;
+    }
+
+    .shortcut:hover {
+      transform: translateY(-4px);
+      color: #ffffff;
+    }
+
+    .icon-box {
+      width: 58px;
+      height: 58px;
+      background: rgba(30, 30, 30, 0.65);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+    }
+
+    .icon-box img {
+      width: 30px;
+      height: 30px;
+      border-radius: 6px;
+    }
+
+    .shortcut span {
+      font-size: 0.85rem;
+      text-align: center;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: 100%;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+    }
+
+    .delete-btn {
+      position: absolute;
+      top: -6px;
+      right: 2px;
+      background: #ff5555;
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      font-size: 0.75rem;
+      cursor: pointer;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 3;
+    }
+
+    .add-shortcut-btn {
+      background: rgba(40, 40, 40, 0.5);
+      border: 1px dashed rgba(255, 255, 255, 0.3);
+      cursor: pointer;
+    }
+
+    .add-shortcut-btn:hover {
+      background: rgba(187, 134, 252, 0.2);
+      border-color: #bb86fc;
+    }
+
+    .add-shortcut-btn span {
+      font-size: 1.5rem;
+      color: #bbb;
+    }
+
+    .settings-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 3;
+      background: rgba(30, 30, 30, 0.65);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #ccc;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    }
+
+    .settings-btn:hover {
+      background: rgba(50, 50, 50, 0.9);
+      color: #fff;
+      transform: scale(1.05);
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(6px);
+      z-index: 10;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-content {
+      background: #1e1e1e;
+      border: 1px solid #333;
+      padding: 30px;
+      border-radius: 20px;
+      width: 100%;
+      max-width: 420px;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.6);
+      color: #fff;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .modal-content h2 {
+      margin-bottom: 20px;
+      font-size: 1.4rem;
+    }
+
+    .modal-group {
+      margin-bottom: 20px;
+    }
+
+    .modal-group label {
+      display: block;
+      font-size: 0.9rem;
+      color: #aaa;
+      margin-bottom: 8px;
+    }
+
+    .modal-group input, .modal-group select {
+      width: 100%;
+      padding: 10px 14px;
+      background: #2a2a2a;
+      border: 1px solid #444;
+      border-radius: 10px;
+      color: #fff;
+      font-size: 0.95rem;
+      outline: none;
+    }
+
+    .modal-group input:focus, .modal-group select:focus {
+      border-color: #bb86fc;
+    }
+
+    /* Settings Wallpaper Drop Panel */
+    .settings-drop-panel {
+      border: 2px dashed rgba(255, 255, 255, 0.2);
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      background: #262626;
+      color: #aaa;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .settings-drop-panel:hover, .settings-drop-panel.drag-over {
+      border-color: #bb86fc;
+      background: rgba(187, 134, 252, 0.1);
+      color: #fff;
+    }
+
+    .about-box {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 14px;
+      font-size: 0.85rem;
+      color: #bbb;
+      line-height: 1.5;
+    }
+
+    .about-box a {
+      color: #bb86fc;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .about-box a:hover {
+      text-decoration: underline;
+    }
+
+    .modal-buttons {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 25px;
+    }
+
+    .modal-buttons button {
+      padding: 10px 18px;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .btn-save {
+      background: #bb86fc;
+      color: #121212;
+    }
+
+    .btn-save:hover {
+      background: #a366ff;
+    }
+
+    .btn-close {
+      background: #333;
+      color: #fff;
+    }
+
+    .btn-close:hover {
+      background: #444;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="overlay"></div>
+
+  <div class="top-section">
+    <div class="title-wrapper">
+      <img src="logo.png" alt="Logo" class="title-logo">
+      <h1 class="title">Real Home.</h1>
+    </div>
+
+    <div class="search-box">
+      <form id="search-form" action="https://www.google.com/search" method="get">
+        <div class="search-input-wrapper">
+          <input type="text" id="search-input" name="q" placeholder="Search Google..." autofocus autocomplete="off">
+          <div class="search-actions">
+            <button type="button" id="voice-search-btn" class="search-icon-btn" title="Voice Search">🎙️</button>
+            <button type="button" id="image-search-btn" class="search-icon-btn" title="Image Search">📷</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <!-- Shortcut Grid Container -->
+    <div class="favorites-grid" id="shortcut-grid"></div>
+  </div>
+
+  <button id="settings-btn" class="settings-btn" title="Settings">⚙️</button>
+
+  <!-- Settings Modal -->
+  <div id="settings-modal" class="modal">
+    <div class="modal-content">
+      <h2>Customization Settings</h2>
+      
+      <div class="modal-group">
+        <label>Drag & Drop Wallpaper Photo</label>
+        <div id="settings-drop-panel" class="settings-drop-panel">
+          📁 Drag an image file here to change wallpaper
+        </div>
+      </div>
+
+      <div class="modal-group">
+        <label for="wallpaper-link-input">Or Wallpaper Image URL</label>
+        <input type="text" id="wallpaper-link-input" placeholder="https://example.com/image.jpg">
+      </div>
+
+      <div class="modal-group">
+        <label for="search-engine-select">Search Engine</label>
+        <select id="search-engine-select">
+          <option value="https://www.google.com/search?q=">Google</option>
+          <option value="https://duckduckgo.com/?q=">DuckDuckGo</option>
+          <option value="https://www.bing.com/search?q=">Bing</option>
+          <option value="https://search.brave.com/search?q=">Brave Search</option>
+        </select>
+      </div>
+
+      <div class="modal-group">
+        <label>Manage Shortcuts</label>
+        <button id="toggle-edit-mode-btn" class="btn-close" style="width:100%;">Toggle Delete Icons Mode</button>
+      </div>
+
+      <div class="modal-group">
+        <label>About</label>
+        <div class="about-box">
+          <strong>Real Home. v1.0</strong><br>
+          Made with ❤️ by <a href="https://github.com/ahmas0064-cloud" target="_blank" rel="noopener noreferrer">@ahmas0064-cloud</a><br>
+          Licensed under the MIT License.
+        </div>
+      </div>
+
+      <div class="modal-buttons">
+        <button id="close-btn" class="btn-close">Cancel</button>
+        <button id="save-btn" class="btn-save">Save Changes</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Shortcut Modal -->
+  <div id="add-modal" class="modal">
+    <div class="modal-content">
+      <h2>Add New Shortcut</h2>
+      
+      <div class="modal-group">
+        <label for="shortcut-name-input">Title</label>
+        <input type="text" id="shortcut-name-input" placeholder="YouTube">
+      </div>
+
+      <div class="modal-group">
+        <label for="shortcut-url-input">Website URL</label>
+        <input type="text" id="shortcut-url-input" placeholder="https://youtube.com">
+      </div>
+
+      <div class="modal-buttons">
+        <button id="add-close-btn" class="btn-close">Cancel</button>
+        <button id="add-save-btn" class="btn-save">Add Shortcut</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,14 @@
+{
+  "manifest_version": 3,
+  "name": "Real Home.",
+  "version": "1.0",
+  "description": "Ultra fast custom new tab page",
+  "chrome_url_overrides": {
+    "newtab": "index.html"
+  },
+  "icons": {
+    "16": "logo.png",
+    "48": "logo.png",
+    "128": "logo.png"
+  }
+}
