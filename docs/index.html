@@ -90,6 +90,7 @@
       padding: 8px 18px;
       border-radius: 20px;
       font-weight: 500;
+      text-decoration: none;
       transition: all 0.2s ease;
     }
 
@@ -169,7 +170,7 @@
       transform: translateY(-2px);
     }
 
-    /* Live Preview Section */
+    /* Interactive Live Preview Window */
     .preview-section {
       max-width: 1050px;
       margin: 40px auto 100px;
@@ -199,6 +200,7 @@
       backdrop-filter: blur(20px);
       box-shadow: 0 24px 48px rgba(0, 0, 0, 0.6);
       overflow: hidden;
+      position: relative;
     }
 
     .browser-toolbar {
@@ -235,18 +237,169 @@
       gap: 8px;
     }
 
-    .iframe-container {
+    /* Live Extension Simulation Canvas */
+    .simulator-stage {
+      min-height: 500px;
+      padding: 60px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-size: cover;
+      background-position: center;
+      transition: background 0.3s ease;
       position: relative;
-      width: 100%;
-      height: 540px;
     }
 
-    .iframe-container iframe {
+    .sim-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 30px;
+      color: #ffffff;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    }
+
+    .sim-logo img {
+      width: 42px;
+      height: 42px;
+    }
+
+    .sim-search-bar {
+      width: 100%;
+      max-width: 580px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(12px);
+      border-radius: 30px;
+      padding: 8px 16px 8px 22px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+      margin-bottom: 40px;
+    }
+
+    .sim-search-input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      outline: none;
+      color: #ffffff;
+      font-size: 1rem;
+    }
+
+    .sim-search-input::placeholder {
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .sim-icon-btn {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      font-size: 1.1rem;
+      padding: 6px;
+      border-radius: 50%;
+      color: rgba(255, 255, 255, 0.7);
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .sim-icon-btn:hover {
+      background: rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+    }
+
+    .sim-shortcuts-grid {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .sim-tile {
+      width: 72px;
+      height: 72px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      color: #ffffff;
+      font-size: 0.75rem;
+      gap: 6px;
+      transition: transform 0.2s, background 0.2s;
+    }
+
+    .sim-tile:hover {
+      transform: translateY(-3px);
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    .sim-settings-btn {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      backdrop-filter: blur(10px);
+    }
+
+    /* Modal Simulation Overlay */
+    .sim-modal {
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
       width: 100%;
       height: 100%;
-      border: none;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(8px);
+      z-index: 10;
+      align-items: center;
+      justify-content: center;
     }
 
+    .sim-modal-content {
+      background: #18181b;
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 24px;
+      max-width: 400px;
+      width: 90%;
+      text-align: center;
+    }
+
+    .sim-modal-content h3 {
+      margin-bottom: 12px;
+    }
+
+    .sim-modal-content p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+
+    .sim-close-btn {
+      background: var(--btn-bg);
+      border: 1px solid var(--card-border);
+      color: var(--text-main);
+      padding: 8px 20px;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+
+    /* Features Grid */
     .features-section {
       max-width: 1100px;
       margin: 0 auto 100px;
@@ -390,9 +543,6 @@
       nav {
         padding: 20px 5%;
       }
-      .iframe-container {
-        height: 380px;
-      }
       footer {
         flex-direction: column;
         text-align: center;
@@ -413,7 +563,7 @@
       <a href="#preview">Interactive Demo</a>
       <a href="#features">Features</a>
       <a href="#install">Install</a>
-      <a href="https://github.com/ahmas0064-cloud/real-home-extension" target="_blank" class="btn-github">GitHub</a>
+      <a href="https://github.com/ahmas0064-cloud/Real-Home." target="_blank" class="btn-github">GitHub</a>
     </div>
   </nav>
 
@@ -423,11 +573,11 @@
     <p>A fast, privacy-first Manifest V3 new tab page featuring neutral glassmorphism design, local wallpaper storage, and smart shortcuts.</p>
     <div class="cta-group">
       <a href="#install" class="btn-primary">Get Started</a>
-      <a href="https://github.com/ahmas0064-cloud/real-home-extension" target="_blank" class="btn-secondary">View Source Code</a>
+      <a href="https://github.com/ahmas0064-cloud/Real-Home." target="_blank" class="btn-secondary">View Source Code</a>
     </div>
   </header>
 
-  <!-- Live Embedded Interactive Preview -->
+  <!-- Interactive Live Simulator -->
   <section id="preview" class="preview-section">
     <div class="preview-header">
       <h2>Live Interactive Preview</h2>
@@ -444,8 +594,38 @@
           🔒 real-home://newtab
         </div>
       </div>
-      <div class="iframe-container">
-        <iframe src="../index.html" title="Real Home Extension Preview"></iframe>
+      
+      <!-- Stage -->
+      <div class="simulator-stage" id="simStage">
+        <div class="sim-logo">
+          <img src="logo.png" alt="Logo">
+          Real Home.
+        </div>
+
+        <form class="sim-search-bar" action="https://www.google.com/search" method="GET" target="_blank">
+          <input type="text" name="q" class="sim-search-input" placeholder="Search Google or type a URL..." required>
+          <button type="button" class="sim-icon-btn" onclick="alert('Voice search activated in browser extension!')" title="Voice Search">🎙️</button>
+          <button type="button" class="sim-icon-btn" onclick="alert('Image search activated in browser extension!')" title="Image Search">📷</button>
+        </form>
+
+        <div class="sim-shortcuts-grid">
+          <a href="https://youtube.com" target="_blank" class="sim-tile">▶️ <span>YouTube</span></a>
+          <a href="https://reddit.com" target="_blank" class="sim-tile">💬 <span>Reddit</span></a>
+          <a href="https://github.com" target="_blank" class="sim-tile">🐙 <span>GitHub</span></a>
+          <a href="https://gmail.com" target="_blank" class="sim-tile">✉️ <span>Gmail</span></a>
+          <a href="https://wikipedia.org" target="_blank" class="sim-tile">📖 <span>Wikipedia</span></a>
+        </div>
+
+        <button class="sim-settings-btn" onclick="toggleSimModal(true)">⚙️ Settings</button>
+
+        <!-- Simulated Modal -->
+        <div class="sim-modal" id="simModal">
+          <div class="sim-modal-content">
+            <h3>Wallpaper & Settings</h3>
+            <p>In the extension, you can drag and drop any local image here to save high-res wallpapers using IndexedDB!</p>
+            <button class="sim-close-btn" onclick="toggleSimModal(false)">Close Preview</button>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -497,35 +677,6 @@
           <div class="step-number">1</div>
           <div class="step-text">
             <h4>Clone or Download Repository</h4>
-            <p>Run <code>git clone https://github.com/ahmas0064-cloud/real-home-extension.git</code> or download the ZIP from GitHub.</p>
+            <p>Run <code>git clone https://github.com/ahmas0064-cloud/Real-Home..git</code> or download the ZIP from GitHub.</p>
           </div>
         </div>
-        <div class="step-item">
-          <div class="step-number">2</div>
-          <div class="step-text">
-            <h4>Open Browser Extensions Page</h4>
-            <p>Go to <code>chrome://extensions</code> or <code>brave://extensions</code> in your browser address bar.</p>
-          </div>
-        </div>
-        <div class="step-item">
-          <div class="step-number">3</div>
-          <div class="step-text">
-            <h4>Enable Developer Mode & Load</h4>
-            <p>Toggle <strong>Developer Mode</strong> in the top right, click <strong>Load unpacked</strong>, and select your extension folder.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    <div>
-      Developed by <a href="https://github.com/ahmas0064-cloud" target="_blank">@ahmas0064-cloud</a> • MIT License
-    </div>
-    <div>
-      Target Release: December 1, 2026
-    </div>
-  </footer>
-
-</body>
-</html>
