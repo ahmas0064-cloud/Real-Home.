@@ -10,7 +10,8 @@ A lightweight, high-performance **New Tab** Chromiun browser extension built wit
 - **Customizable Search Engines:** Switch seamlessly between Google, DuckDuckGo, Bing, and Brave Search.
 - **Dynamic Bookmark Grid:** Add, edit, and delete quick-access site shortcuts directly from your main dashboard with automatic favicon fetching.
 - **Privacy-First:** Zero tracking, zero telemetry, and fully self-contained in local storage.
-
+- **No Annoying Pop Up:**
+No Ads, And more.
 ## NEW Features 
 
 - **Mic and Image Input:** Added voice search (microphone) and quick image search integration. (kinda broke)
@@ -28,7 +29,7 @@ A lightweight, high-performance **New Tab** Chromiun browser extension built wit
    git clone [git@github.com:ahmas0064-cloud/Real-Home..git](git@github.com:ahmas0064-cloud/Real-Home..gitt)
 
 ## Warning!
-It is still in its alpha version, so there may be bugs. The full release is expected on December 1, 2026.
+It is still in its alpha version, so there may be bugs. We tried our best to fix bugs. The full release is expected on December 1, 2026.
 
 ## License
 Distributed under the MIT License. See LICENSE for more information.
